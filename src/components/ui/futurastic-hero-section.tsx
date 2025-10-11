@@ -20,7 +20,7 @@ export const AuroraHero = () => {
       repeat: Infinity,
       repeatType: "mirror",
     });
-  }, []);
+  }, [color]);
 
   const backgroundImage = useMotionTemplate`
     radial-gradient(125% 125% at 50% 0%, #020617 50%, ${color})
@@ -94,7 +94,7 @@ export const AuroraHero = () => {
                 Thank you for joining our waitlist!
               </p>
               <p className="mt-1 text-sm text-gray-300">
-                We'll notify you when we launch with exclusive early access.
+                We&apos;ll notify you when we launch with exclusive early access.
               </p>
             </div>
           )}

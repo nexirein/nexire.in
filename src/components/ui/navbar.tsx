@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FiArrowRight } from "react-icons/fi";
-import { FaLinkedin } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { getCalApi } from "@calcom/embed-react";
 

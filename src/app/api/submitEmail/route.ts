@@ -19,7 +19,8 @@ export async function POST(req: NextRequest) {
     const data = await response.json();
 
     return NextResponse.json(data);
-  } catch (err: any) {
-    return NextResponse.json({ result: "error", message: err.message });
+  } catch (err: Error | unknown) {
+    const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
+    return NextResponse.json({ result: "error", message: errorMessage });
   }
 }

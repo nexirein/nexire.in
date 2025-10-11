@@ -5,7 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import React, { useEffect, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { FaLinkedin, FaInstagram } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6"; // ✅ X.com (new Twitter logo)
+import { FaXTwitter } from "react-icons/fa6"; // X.com (new Twitter logo)
 import { useMotionTemplate, useMotionValue, motion, animate } from "framer-motion";
 
 const COLORS_TOP = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
@@ -59,9 +59,14 @@ export const AuroraHero = () => {
       } else {
         throw new Error(data.message || "Failed to submit email");
       }
-    } catch (err: any) {
-      setError(err.message || "Something went wrong. Please try again later.");
-      console.error("Error:", err);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+        console.error("Error:", err);
+      } else {
+        setError("Something went wrong. Please try again later.");
+        console.error("Unknown error:", err);
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -82,8 +87,8 @@ export const AuroraHero = () => {
         </h1>
 
         <p className="my-6 max-w-xl text-center text-base md:text-lg text-gray-300">
-          AI-powered interviews that evaluate, engage, and hire the right talent
-          75% faster than traditional screening.
+          AI-powered interviews that evaluate, engage, and hire the right talent 75% faster than
+          traditional screening.
         </p>
 
         {/* Waitlist Form */}
@@ -150,7 +155,7 @@ export const AuroraHero = () => {
                 target="_blank"
                 className="hover:text-gray-300 transition"
               >
-                <FaXTwitter className="w-5 h-5" /> {/* ✅ New X logo */}
+                <FaXTwitter className="w-5 h-5" />
               </a>
               <a
                 href="https://www.instagram.com/nexirein/"

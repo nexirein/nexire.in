@@ -1,0 +1,59 @@
+// Google Apps Script code to handle form submissions to Google Sheets
+// Instructions:
+// 1. Go to https://script.google.com/
+// 2. Create a new project
+// 3. Copy and paste this code
+// 4. Create a Google Sheet and copy its ID from the URL (the long string between /d/ and /edit)
+// 5. Replace 'YOUR_SHEET_ID' with your actual Google Sheet ID
+// 6. Deploy as a web app (Deploy > New deployment > Web app)
+// 7. Set access to "Anyone, even anonymous"
+// 8. Copy the deployment URL and use it in the waitlist-form.tsx component
+
+function doPost(e) {
+  try {
+    // Parse the incoming JSON data
+    const data = JSON.parse(e.postData.contents);
+    const email = data.email;
+    
+    // Open the Google Sheet
+    const ss = SpreadsheetApp.openById('YOUR_SHEET_ID');
+    const sheet = ss.getSheetByName('Waitlist') || ss.insertSheet('Waitlist');
+    
+    // Check if headers exist, if not add them
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(['Email', 'Timestamp']);
+    }
+    
+    // Add the new submission
+    sheet.appendRow([email, new Date()]);
+    
+    // Return success response
+    return ContentService.createTextOutput(JSON.stringify({
+      'result': 'success',
+      'message': 'Email added to waitlist'
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
+    
+  } catch (error) {
+    // Return error response
+    return ContentService.createTextOutput(JSON.stringify({
+      'result': 'error',
+      'message': error.toString()
+    }))
+    .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Handle CORS preflight requests
+function doOptions(e) {
+  var headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Max-Age': '86400'
+  };
+  
+  return ContentService.createTextOutput()
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeaders(headers);
+}

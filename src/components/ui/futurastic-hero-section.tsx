@@ -88,7 +88,7 @@ export const AuroraHero = () => {
         </motion.span>
 
         <h1 className="max-w-5xl bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl md:text-7xl">
-          Hire faster. Fire your agency.
+          Hire 5x Faster. Pay 10x Less.
         </h1>
 
         <div className="mt-10 flex flex-col items-center gap-6">

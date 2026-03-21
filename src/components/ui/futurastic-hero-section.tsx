@@ -87,22 +87,21 @@ export const AuroraHero = () => {
           Launching Soon!
         </motion.span>
 
-        <h1 className="max-w-5xl bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl md:text-7xl">
-          Hire 5x Faster. Pay 10x Less.
+        <h1 className="max-w-7xl bg-gradient-to-br from-white to-gray-400 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-7xl md:text-8xl leading-[1.1]">
+          Describe who you need. <br className="hidden sm:block" /> Nexire finds them.
         </h1>
 
-        <div className="mt-10 flex flex-col items-center gap-6">
-          <p className="max-w-2xl text-lg md:text-xl text-gray-300 font-medium leading-relaxed">
-            Your AI recruiter that sources, reaches out, and delivers interview-ready candidates — automatically.
+        <div className="mt-8 flex flex-col items-center gap-4">
+          <p className="max-w-4xl text-lg md:text-xl text-gray-200 font-medium leading-relaxed px-4">
+            Nexire searches 300M+ fresh public profiles, reaches out automatically, and delivers interview-ready candidates — no job board noise, no stale profiles, no agency markup.
           </p>
-          <p className="max-w-xl text-sm md:text-base text-gray-400 leading-relaxed">
-            No more sourcing black holes. No more CV roulette. No more expensive tools showing stale profiles.
-            Nexire does the recruiting. You make the final call.
-          </p>
+          {/* <p className="max-w-lg text-sm md:text-base text-gray-400 leading-relaxed px-4">
+            No job board noise. No stale profiles. No agency fees. Just tell Nexire who you need — and get a shortlist that's actually worth your time.
+          </p> */}
         </div>
 
         {/* Waitlist Form */}
-        <div className="w-full max-w-2xl mt-4 flex flex-col items-center gap-6">
+        <div className="w-full max-w-2xl mt-12 flex flex-col items-center gap-6 px-4">
           {isSuccess && (
             <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-4 text-center text-white w-full">
               <p className="text-lg font-medium">
@@ -143,7 +142,7 @@ export const AuroraHero = () => {
                 disabled={isSubmitting}
                 className="flex items-center gap-2 px-8 py-4 bg-gray-950/20 backdrop-blur-md rounded-full text-white font-medium transition hover:bg-gray-950/50 disabled:opacity-70 whitespace-nowrap"
               >
-                {isSubmitting ? "Submitting..." : "Join the Waitlist"}
+                {isSubmitting ? "Submitting..." : "Get Early Access"}
                 {!isSubmitting && <FiArrowRight />}
               </motion.button>
             </form>

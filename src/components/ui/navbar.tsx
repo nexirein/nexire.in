@@ -24,10 +24,10 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`fixed z-50 flex items-center justify-between py-4 transition-all duration-300 ${
+      className={`z-50 flex items-center justify-between py-4 transition-all duration-300 ${
         scrolled
-          ? "top-4 left-4 right-4 px-6 rounded-full bg-[#0a0a1e]/90 backdrop-blur-md border border-white/10 mx-auto max-w-7xl"
-          : "top-0 left-0 right-0 px-6 bg-[#0a0a1e]/80 backdrop-blur-md border-b border-white/10"
+          ? "px-6 rounded-full bg-[#0a0a1e]/90 backdrop-blur-md border border-white/10 mx-auto max-w-7xl mt-4"
+          : "px-6 bg-[#0a0a1e]/80 backdrop-blur-md border-b border-white/10"
       }`}
     >
       <div className="flex items-center pl-6">

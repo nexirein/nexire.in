@@ -75,21 +75,31 @@ export const AuroraHero = () => {
   return (
     <motion.section
       style={{ backgroundImage }}
-      className="relative grid min-h-screen place-content-center overflow-hidden bg-gray-950 px-4 py-24 text-gray-200"
+      className="relative flex min-h-[calc(100vh-120px)] flex-col items-center justify-center overflow-hidden bg-gray-950 px-4 py-12 text-gray-200"
     >
-      <div className="relative z-10 flex flex-col items-center">
-        <span className="mb-2 inline-block rounded-full bg-gray-600/50 px-3 py-1.5 text-sm">
+      <div className="relative z-10 flex flex-col items-center text-center">
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mb-6 inline-block rounded-full bg-indigo-500/10 px-4 py-1.5 text-xs font-semibold tracking-wider text-indigo-400 border border-indigo-500/20 uppercase"
+        >
           Launching Soon!
-        </span>
+        </motion.span>
 
         <h1 className="max-w-5xl bg-gradient-to-br from-white to-gray-400 bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl md:text-7xl">
-          Stop Losing Great Candidates to Outdated Interviews
+          Hire faster. Fire your agency.
         </h1>
 
-        <p className="my-6 max-w-xl text-center text-base md:text-lg text-gray-300">
-          AI-powered interviews that evaluate, engage, and hire the right talent 75% faster than
-          traditional screening.
-        </p>
+        <div className="mt-10 flex flex-col items-center gap-6">
+          <p className="max-w-2xl text-lg md:text-xl text-gray-300 font-medium leading-relaxed">
+            Your AI recruiter that sources, reaches out, and delivers interview-ready candidates — automatically.
+          </p>
+          <p className="max-w-xl text-sm md:text-base text-gray-400 leading-relaxed">
+            No more sourcing black holes. No more CV roulette. No more expensive tools showing stale profiles.
+            Nexire does the recruiting. You make the final call.
+          </p>
+        </div>
 
         {/* Waitlist Form */}
         <div className="w-full max-w-2xl mt-4 flex flex-col items-center gap-6">
@@ -133,7 +143,7 @@ export const AuroraHero = () => {
                 disabled={isSubmitting}
                 className="flex items-center gap-2 px-8 py-4 bg-gray-950/20 backdrop-blur-md rounded-full text-white font-medium transition hover:bg-gray-950/50 disabled:opacity-70 whitespace-nowrap"
               >
-                {isSubmitting ? "Submitting..." : "Join Waitlist"}
+                {isSubmitting ? "Submitting..." : "Join the Waitlist"}
                 {!isSubmitting && <FiArrowRight />}
               </motion.button>
             </form>

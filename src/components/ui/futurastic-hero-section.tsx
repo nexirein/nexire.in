@@ -75,7 +75,7 @@ export const AuroraHero = () => {
   return (
     <motion.section
       style={{ backgroundImage }}
-      className="relative flex min-h-[calc(100vh-120px)] flex-col items-center justify-center overflow-hidden bg-gray-950 px-4 py-12 text-gray-200"
+      className="relative flex min-h-[calc(100vh-80px)] flex-col items-center justify-center overflow-hidden bg-gray-950 px-4 py-12 text-gray-200"
     >
       <div className="relative z-10 flex flex-col items-center text-center">
         <motion.span

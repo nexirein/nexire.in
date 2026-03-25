@@ -92,7 +92,7 @@ export const AuroraHero = () => {
         </h1>
 
         <div className="mt-8 flex flex-col items-center gap-4">
-          <p className="max-w-4xl text-lg md:text-xl text-gray-200 font-medium leading-relaxed px-4">
+          <p className="max-w-5xl text-lg md:text-xl text-gray-200 font-medium leading-relaxed px-5">
             Describe the person you need in plain English. Nexire finds them from 300M+ fresh profiles, screens them, and delivers your shortlist in 48 hours — no stale job boards, no agency fees, no noise.
           </p>
         </div>

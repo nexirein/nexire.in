@@ -92,15 +92,9 @@ export const AuroraHero = () => {
         </h1>
 
         <div className="mt-8 flex flex-col items-center gap-4">
-          <div className="flex flex-col items-center gap-3">
-            <p className="max-w-4xl text-lg md:text-xl text-gray-200 font-medium leading-relaxed px-4">
-              Describe the person you need in plain English. <br className="hidden md:block" />
-              Nexire finds them from 300M+ fresh profiles, screens them, and delivers your shortlist in 48 hours — no stale job boards, no agency fees, no noise.
-            </p>
-            <p className="text-indigo-400 font-semibold tracking-wide text-sm md:text-base">
-              Built for Indian startups. Priced for Indian budgets.
-            </p>
-          </div>
+          <p className="max-w-4xl text-lg md:text-xl text-gray-200 font-medium leading-relaxed px-4">
+            Describe the person you need in plain English. Nexire finds them from 300M+ fresh profiles, screens them, and delivers your shortlist in 48 hours — no stale job boards, no agency fees, no noise.
+          </p>
         </div>
 
         {/* Waitlist Form */}
@@ -145,7 +139,7 @@ export const AuroraHero = () => {
                 disabled={isSubmitting}
                 className="flex items-center gap-2 px-8 py-4 bg-gray-950/20 backdrop-blur-md rounded-full text-white font-medium transition hover:bg-gray-950/50 disabled:opacity-70 whitespace-nowrap"
               >
-                {isSubmitting ? "Submitting..." : "Try Beta Free"}
+                {isSubmitting ? "Submitting..." : "Request Beta Access"}
                 {!isSubmitting && <FiArrowRight />}
               </motion.button>
             </form>

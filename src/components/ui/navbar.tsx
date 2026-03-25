@@ -50,22 +50,21 @@ export const Navbar = () => {
       </div> */}
 
       <div className="flex items-center space-x-4">
-        {/* <Link
-          href="https://www.linkedin.com/in/bipulsikder16"
-          target="_blank"
+        <Link
+          href="https://beta.nexire.in/"
           className="text-white/80 hover:text-white transition-colors"
         >
-          <FaLinkedin className="w-5 h-5" />
-        </Link> */}
+          Login
+        </Link>
 
-        {/* ✅ Cal.com "Try for Free" button using data attributes */}
+        {/* ✅ Cal.com "Book a Demo" button using data attributes */}
         <button
           data-cal-namespace="30min"
           data-cal-link="nexire/30min"
           data-cal-config='{"layout":"month_view"}'
           className="flex items-center space-x-1 bg-transparent border border-white/20 rounded-full px-4 py-2 text-white hover:bg-white/10 transition-colors"
         >
-          <span>Try It Free</span>
+          <span>Book a Demo</span>
           <FiArrowRight className="w-4 h-4" />
         </button>
       </div>

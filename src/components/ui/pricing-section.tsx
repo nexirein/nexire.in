@@ -79,7 +79,7 @@ export function PricingSection() {
       ],
       note: "All 2,400 credits given upfront on purchase",
       strikethrough: 83988,
-      badge: "⭐ Save 28% — Best Value",
+      badge: "Save 28% — Best Value",
     }
   };
 
@@ -140,7 +140,7 @@ export function PricingSection() {
       ],
       note: "All 6,000 credits given upfront on purchase",
       strikethrough: null,
-      badge: "⭐ Save 23% — Best Value",
+      badge: "Save 23% — Best Value",
       isStartingAt: true,
       hidePrice: true,
     }

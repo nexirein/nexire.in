@@ -2,155 +2,113 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import NumberFlow from "@number-flow/react";
-import { Phone, Mail, User, Zap, Sparkles, CheckCheck, Shuffle, Users } from "lucide-react";
+import { Phone, Mail, User, Zap, Check, Clock } from "lucide-react";
 
-type BillingCycle = "monthly" | "quarterly" | "semiannual" | "yearly";
-type StarterInnerCycle = "15days" | "1month";
+type BillingCycle = "monthly" | "yearly";
 
 export function PricingSection() {
   const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
-  const [starterInnerCycle, setStarterInnerCycle] = useState<StarterInnerCycle>("15days");
 
   const starterData = {
     monthly: {
-      "15days": {
-        price: 3999,
-        period: "/ 15 days",
-        views: "5,000",
-        outcomes: [
-          { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Directly call up to 80 passive candidates" },
-          { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Or bulk-email up to 320 verified contacts in one sequence" },
-          { icon: <Shuffle className="w-4 h-4 text-gray-400" />, text: "Mix both for the best response rate" }
-        ],
-        note: null,
-        strikethrough: null,
-        badge: null,
-      },
-      "1month": {
-        price: 6999,
-        period: "/ month",
-        views: "10,000",
-        outcomes: [
-          { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Directly call up to 200 passive candidates" },
-          { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Or bulk-email up to 800 verified contacts in one sequence" },
-          { icon: <Shuffle className="w-4 h-4 text-gray-400" />, text: "Mix both for the best response rate" }
-        ],
-        note: null,
-        strikethrough: null,
-        badge: null,
-      }
-    },
-    quarterly: {
-      price: 18500,
-      period: "/ 3 months",
-      views: "30,000",
+      price: 3999,
+      period: "/seat/ month",
+      views: "5,000",
       outcomes: [
-        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Directly call up to 600 passive candidates" },
-        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Or bulk-email up to 2,400 verified contacts in one sequence" },
-        { icon: <Shuffle className="w-4 h-4 text-gray-400" />, text: "Mix both for the best response rate" }
+        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Call up to 70 passive candidates" },
+        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Bulk-email up to 700 verified contacts" },
       ],
-      note: "All 600 credits given upfront on purchase",
-      strikethrough: 20997,
-      badge: "Save 12%",
-    },
-    semiannual: {
-      price: 34400,
-      period: "/ 6 months",
-      views: "60,000",
-      outcomes: [
-        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Directly call up to 1,200 passive candidates" },
-        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Or bulk-email up to 4,800 verified contacts in one sequence" },
-        { icon: <Shuffle className="w-4 h-4 text-gray-400" />, text: "Mix both for the best response rate" }
-      ],
-      note: "All 1,200 credits given upfront on purchase",
-      strikethrough: 41994,
-      badge: "Save 18%",
+      note: null,
+      badge: null,
+      yearlyBilled: null,
+      yearlySave: null,
     },
     yearly: {
-      price: 60500,
-      period: "/ year",
-      views: "1,20,000",
+      price: 3300,
+      period: "/seat/ month",
+      views: "5,000",
       outcomes: [
-        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Directly call up to 2,400 passive candidates" },
-        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Or bulk-email up to 9,600 verified contacts in one sequence" },
-        { icon: <Shuffle className="w-4 h-4 text-gray-400" />, text: "Mix both for the best response rate" }
+        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Call up to 70 passive candidates" },
+        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Bulk-email up to 700 verified contacts" },
       ],
-      note: "All 2,400 credits given upfront on purchase",
-      strikethrough: 83988,
-      badge: "Save 28% — Best Value",
+      note: null,
+      badge: null,
+      yearlyBilled: 39600,
+      yearlySave: 8388,
     }
   };
 
   const growthData = {
     monthly: {
-      price: 12999,
-      period: "/ month",
-      views: "20,000",
+      price: 7999,
+      period: "/seat/ month",
+      views: "10,000",
       outcomes: [
-        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Directly call up to 500 passive candidates" },
-        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Or bulk-email up to 2,000 verified contacts in one sequence" },
-        { icon: <Users className="w-4 h-4 text-gray-400" />, text: "Split outreach across 2 team members simultaneously" }
+        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Call up to 150 passive candidates" },
+        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Bulk-email up to 1,500 verified contacts" },
       ],
       note: null,
-      strikethrough: null,
       badge: null,
       isStartingAt: false,
       hidePrice: false,
-    },
-    quarterly: {
-      price: 37999,
-      period: "/ 3 months",
-      views: "60,000",
-      outcomes: [
-        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Directly call up to 1,600 passive candidates" },
-        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Or bulk-email up to 6,400 verified contacts in one sequence" },
-        { icon: <Users className="w-4 h-4 text-gray-400" />, text: "Split outreach across 2 team members simultaneously" }
-      ],
-      note: "All 1,600 credits given upfront on purchase",
-      strikethrough: 38997,
-      badge: "Save ₹998 + 100 Bonus Credits",
-      isStartingAt: false,
-      hidePrice: false,
-    },
-    semiannual: {
-      price: 71999,
-      period: "/ 6 months",
-      views: "1,20,000",
-      outcomes: [
-        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Directly call up to 3,000 passive candidates" },
-        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Or bulk-email up to 12,000 verified contacts in one sequence" },
-        { icon: <Users className="w-4 h-4 text-gray-400" />, text: "Split outreach across 2 team members simultaneously" }
-      ],
-      note: "All 3,000 credits given upfront on purchase",
-      strikethrough: null,
-      badge: "Save 15%",
-      isStartingAt: true,
-      hidePrice: true,
+      yearlyBilled: null,
+      yearlySave: null,
     },
     yearly: {
-      price: 129999,
-      period: "/ year",
-      views: "2,40,000",
+      price: 6600,
+      period: "/seat/ month",
+      views: "10,000",
       outcomes: [
-        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Directly call up to 6,000 passive candidates" },
-        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Or bulk-email up to 24,000 verified contacts in one sequence" },
-        { icon: <Users className="w-4 h-4 text-gray-400" />, text: "Split outreach across 2 team members simultaneously" }
+        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Call up to 150 passive candidates" },
+        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Bulk-email up to 1,500 verified contacts" },
       ],
-      note: "All 6,000 credits given upfront on purchase",
-      strikethrough: null,
-      badge: "Save 23% — Best Value",
-      isStartingAt: true,
-      hidePrice: true,
+      note: null,
+      badge: null,
+      isStartingAt: false,
+      hidePrice: false,
+      yearlyBilled: 79200,
+      yearlySave: 16788,
     }
   };
 
-  const currentStarter = billingCycle === "monthly" 
-    ? starterData.monthly[starterInnerCycle] 
-    : starterData[billingCycle as keyof typeof starterData] as any;
+  const proData = {
+    monthly: {
+      price: 13999,
+      period: "/seat/ month",
+      views: "20,000",
+      outcomes: [
+        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Call up to 300 passive candidates" },
+        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Bulk-email up to 3,000 verified contacts" },
+      ],
+      note: null,
+      badge: null,
+      isStartingAt: false,
+      hidePrice: false,
+      yearlyBilled: null,
+      yearlySave: null,
+    },
+    yearly: {
+      price: 11500,
+      period: "/seat/ month",
+      views: "20,000",
+      outcomes: [
+        { icon: <Phone className="w-4 h-4 text-gray-400" />, text: "Call up to 300 passive candidates" },
+        { icon: <Mail className="w-4 h-4 text-gray-400" />, text: "Bulk-email up to 3,000 verified contacts" },
+      ],
+      note: null,
+      badge: null,
+      isStartingAt: false,
+      hidePrice: false,
+      yearlyBilled: 138000,
+      yearlySave: 29988,
+    }
+  };
 
+  const currentStarter = starterData[billingCycle];
   const currentGrowth = growthData[billingCycle];
+  const currentPro = proData[billingCycle];
 
   return (
     <section className="py-24 relative overflow-hidden bg-neutral-100 text-gray-900 min-h-screen">
@@ -180,7 +138,7 @@ export function PricingSection() {
           {/* Top Toggle (styled like image) */}
           <div className="flex justify-center mt-10">
             <div className="relative z-50 flex w-fit rounded-full bg-neutral-50 border border-gray-200 p-1">
-              {(["monthly", "quarterly", "semiannual", "yearly"] as const).map((cycle) => (
+              {(["monthly", "yearly"] as const).map((cycle) => (
                 <button
                   key={cycle}
                   onClick={() => setBillingCycle(cycle)}
@@ -196,10 +154,10 @@ export function PricingSection() {
                     />
                   )}
                   <span className="relative z-10 capitalize flex items-center gap-2">
-                    {cycle === "semiannual" ? "Semiannual" : cycle}
+                    {cycle}
                     {cycle === "yearly" && (
                       <span className="rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-bold text-black border border-blue-100">
-                        Save 23%
+                        Save 18%
                       </span>
                     )}
                   </span>
@@ -209,134 +167,95 @@ export function PricingSection() {
           </div>
         </div>
 
-        {/* Cards Grid (3 Tier as requested) */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-7xl mx-auto items-stretch mb-20">
+        {/* Cards Grid (4 Tier) */}
+        <div className="grid md:grid-cols-4 gap-4 max-w-full mx-auto items-stretch mb-20">
           {/* STARTER CARD */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white rounded-[24px] border border-neutral-200 p-8 shadow-sm flex flex-col h-full relative overflow-hidden"
+            className="bg-white rounded-[24px] border border-neutral-200 p-6 shadow-sm flex flex-col h-full relative overflow-hidden"
           >
-            <div className="mb-8">
-              <h3 className="text-2xl font-semibold text-gray-900 uppercase mb-2">
-                STARTER
-              </h3>
-              <p className="text-sm text-gray-600 mb-6 min-h-[40px]">
-                For solo recruiters closing roles fast, without the fluff.
-              </p>
-              
-              {/* Starter Inner Toggle (Only on Monthly) */}
-              <div className="h-10 mb-6">
-                <AnimatePresence mode="wait">
-                  {billingCycle === "monthly" ? (
-                    <motion.div
-                      key="inner-toggle"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="inline-flex p-1 bg-neutral-50 border border-neutral-200 rounded-lg"
-                    >
-                      <button
-                        onClick={() => setStarterInnerCycle("15days")}
-                        className={`px-4 py-1 text-xs font-bold transition-all rounded-md ${
-                          starterInnerCycle === "15days" ? "bg-white text-gray-900 shadow-sm" : "text-gray-500"
-                        }`}
-                      >
-                        15 Days
-                      </button>
-                      <button
-                        onClick={() => setStarterInnerCycle("1month")}
-                        className={`px-4 py-1 text-xs font-bold transition-all rounded-md ${
-                          starterInnerCycle === "1month" ? "bg-white text-gray-900 shadow-sm" : "text-gray-500"
-                        }`}
-                      >
-                        1 Month
-                      </button>
-                    </motion.div>
-                  ) : (
-                    <div className="h-full" />
-                  )}
-                </AnimatePresence>
-              </div>
+            <div className="flex-grow flex flex-col">
+              <div className="mb-6 min-h-[340px] flex flex-col">
+                <h3 className="text-xl font-semibold text-gray-900 uppercase mb-2">
+                  STARTER
+                </h3>
+                <p className="text-sm text-gray-600 mb-6 min-h-[40px]">
+                  For solo recruiters. One tool to source, call and close.
+                </p>
 
-              <div className="flex flex-col gap-1 mb-6">
-                <div className="flex items-center gap-2">
-                  {currentStarter.strikethrough && (
-                    <span className="text-gray-400 line-through text-lg font-medium">
-                      ₹{currentStarter.strikethrough.toLocaleString('en-IN')}
-                    </span>
-                  )}
-                  {currentStarter.badge && (
-                    <span className="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-100">
-                      {currentStarter.badge}
-                    </span>
-                  )}
+                <div className="flex flex-col gap-1 mb-6">
+                  <div className="flex items-center gap-2">
+                    {currentStarter.badge && (
+                      <span className="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-100">
+                        {currentStarter.badge}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl font-semibold text-gray-900">
+                        ₹<NumberFlow value={currentStarter.price} format={{ useGrouping: true }} />
+                      </span>
+                      <span className="text-gray-600 font-medium text-sm">
+                        {currentStarter.period}
+                      </span>
+                    </div>
+                    {billingCycle === "yearly" && currentStarter.yearlyBilled && (
+                      <p className="text-xs text-blue-600 font-semibold mt-1">
+                        Billed ₹{currentStarter.yearlyBilled.toLocaleString('en-IN')}/yr · Save ₹{currentStarter.yearlySave.toLocaleString('en-IN')}/yr
+                      </p>
+                    )}
+                  </div>
                 </div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-semibold text-gray-900">
-                    ₹<NumberFlow value={currentStarter.price} format={{ useGrouping: true }} />
-                  </span>
-                  <span className="text-gray-600 font-medium text-sm">
-                    {currentStarter.period}
-                  </span>
+
+                <div className="space-y-3 text-sm font-medium text-gray-700 flex-grow">
+                  <p className="flex items-center gap-2">
+                    <User className="w-4 h-4 text-gray-400" />
+                    Up to {currentStarter.views} public profile views
+                  </p>
+                  {currentStarter.outcomes.map((item: any, idx: number) => (
+                    <div key={idx} className="flex flex-col gap-3">
+                      <p className="flex items-start gap-2">
+                        <span className="flex-shrink-0 mt-0.5">{item.icon}</span>
+                        <span>{item.text}</span>
+                      </p>
+                      {idx === 0 && (
+                        <div className="flex items-center gap-2 px-4">
+                          <div className="h-[1px] flex-grow bg-neutral-100" />
+                          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">OR</span>
+                          <div className="h-[1px] flex-grow bg-neutral-100" />
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div className="space-y-3 text-sm font-medium text-gray-700">
-                <p className="flex items-center gap-2">
-                  <User className="w-4 h-4 text-gray-400" />
-                  Up to {currentStarter.views} profile views
-                </p>
-                {currentStarter.outcomes.map((item: any, idx: number) => (
-                  <p key={idx} className="flex items-start gap-2">
-                    <span className="flex-shrink-0 mt-0.5">{item.icon}</span>
-                    <span>{item.text}</span>
-                  </p>
-                ))}
-                <p className="flex items-center gap-2">
-                  <User className="w-4 h-4 text-gray-400" />
-                  1 seat
-                </p>
-                {currentStarter.note && (
-                  <p className="text-xs text-gray-400 mt-2 font-normal italic">
-                    "{currentStarter.note}"
-                  </p>
-                )}
-              </div>
+              <button className="w-full py-3 px-4 bg-neutral-900 text-white rounded-xl font-bold hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 shadow-lg shadow-neutral-900/20 mb-6">
+                Start Now →
+              </button>
             </div>
 
-            <button className="w-full py-4 px-6 bg-neutral-900 text-white rounded-xl font-bold hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 shadow-lg shadow-neutral-900/20 mb-8">
-              Start Now →
-            </button>
+            <hr className="border-neutral-100 mb-5" />
 
-            <hr className="border-neutral-100 mb-8" />
-
-            <ul className="space-y-4 mb-8 flex-grow">
+            <div className="space-y-2">
               {[
-                "**Direct mobile numbers** — call people nobody else has called this week",
-                "**Work + personal emails** — higher reply rate when work inbox is silent",
-                "AI match ranking + insights",
-                "CSV export",
-                "**Bulk email sequences** — send to 100s of candidates in one click",
-                "1 login seat",
+                "AI-ranked shortlist — unlock only the contacts worth calling",
+                "Direct mobile numbers — call people nobody else has called",
+                "Phone unlock includes verified email — free",
+                "Weekly verified data refresh",
               ].map((feature, i) => (
-                <li key={i} className="flex items-start gap-3 group relative">
-                  <span className="mt-0.5 flex-shrink-0 grid place-content-center h-5 w-5 rounded-full bg-blue-50 border border-blue-500">
-                    <CheckCheck className="h-3 w-3 text-blue-500" strokeWidth={3} />
+                <div key={i} className="flex items-start gap-3 pb-2 border-b border-dashed border-neutral-100 last:border-0">
+                  <span className="mt-0.5 flex-shrink-0 grid place-content-center h-5 w-5 rounded-full bg-white border border-blue-400">
+                    <Check className="h-3 w-3 text-blue-500" strokeWidth={3} />
                   </span>
-                  <div className="flex flex-col relative w-full">
-                    <span className="text-sm text-gray-700 border-b border-dashed border-gray-300 pb-0.5 w-fit">
-                      {feature.includes('**') ? (
-                        <>
-                          <strong>{feature.split('**')[1]}</strong>
-                          {feature.split('**')[2]}
-                        </>
-                      ) : feature}
-                    </span>
-                  </div>
-                </li>
+                  <span className="text-[13px] text-gray-600 font-medium leading-tight">
+                    {feature}
+                  </span>
+                </div>
               ))}
-            </ul>
+            </div>
           </motion.div>
 
           {/* GROWTH CARD (Highlighted) */}
@@ -344,7 +263,7 @@ export function PricingSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="bg-blue-50 rounded-[24px] border-2 border-blue-500 p-8 shadow-xl shadow-blue-500/10 flex flex-col h-full relative overflow-hidden"
+            className="bg-blue-50 rounded-[24px] border-2 border-blue-500 p-6 shadow-xl shadow-blue-500/10 flex flex-col h-full relative overflow-hidden"
           >
             <div className="absolute top-4 right-4">
               <span className="bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
@@ -352,115 +271,173 @@ export function PricingSection() {
               </span>
             </div>
 
-            <div className="mb-8">
-              <h3 className="text-2xl font-semibold text-gray-900 uppercase mb-2">
-                GROWTH
-              </h3>
-              <p className="text-sm text-gray-600 mb-6 min-h-[40px]">
-                For agencies and teams hiring at scale, every month.
-              </p>
-              
-              <div className="h-10 mb-6 flex items-center">
-                <span className="text-xs font-bold text-blue-600/60 flex items-center gap-1.5">
-                  <Sparkles className="w-3 h-3" />
-                  Scale your agency
-                </span>
-              </div>
+            <div className="flex-grow flex flex-col">
+              <div className="mb-6 min-h-[340px] flex flex-col">
+                <h3 className="text-xl font-semibold text-gray-900 uppercase mb-2">
+                  GROWTH
+                </h3>
+                <p className="text-sm text-gray-600 mb-6 min-h-[40px]">
+                  For agencies closing 4–6 roles a month.
+                </p>
 
-              <div className="flex flex-col gap-1 mb-6">
-                <div className="flex items-center gap-2">
-                  {currentGrowth.strikethrough && (
-                    <span className="text-gray-400 line-through text-lg font-medium">
-                      ₹{currentGrowth.strikethrough.toLocaleString('en-IN')}
-                    </span>
-                  )}
-                  {currentGrowth.badge && (
-                    <span className="bg-blue-100 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-blue-200">
-                      {currentGrowth.badge}
-                    </span>
-                  )}
-                </div>
-                <div className="flex items-baseline gap-1">
-                  {currentGrowth.hidePrice ? (
-                    <span className="text-4xl font-semibold text-gray-900">Contact Us</span>
-                  ) : (
-                    <>
-                      {currentGrowth.isStartingAt && (
-                        <span className="text-gray-500 font-bold text-lg mr-1">Starting at</span>
-                      )}
-                      <span className="text-4xl font-semibold text-gray-900">
+                <div className="flex flex-col gap-1 mb-6">
+                  <div className="flex items-center gap-2">
+                    {currentGrowth.badge && (
+                      <span className="bg-blue-100 text-blue-600 text-[10px] font-bold px-2 py-0.5 rounded-full border border-blue-200">
+                        {currentGrowth.badge}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl font-semibold text-gray-900">
                         ₹<NumberFlow value={currentGrowth.price} format={{ useGrouping: true }} />
                       </span>
                       <span className="text-gray-600 font-medium text-sm">
                         {currentGrowth.period}
                       </span>
-                    </>
-                  )}
+                    </div>
+                    {billingCycle === "yearly" && currentGrowth.yearlyBilled && (
+                      <p className="text-xs text-blue-600 font-semibold mt-1">
+                        Billed ₹{currentGrowth.yearlyBilled.toLocaleString('en-IN')}/yr · Save ₹{currentGrowth.yearlySave.toLocaleString('en-IN')}/yr
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="space-y-3 text-sm font-medium text-gray-700 flex-grow">
+                  <p className="flex items-center gap-2">
+                    <User className="w-4 h-4 text-gray-400" />
+                    Up to {currentGrowth.views} public profile views
+                  </p>
+                  {currentGrowth.outcomes.map((item: any, idx: number) => (
+                    <div key={idx} className="flex flex-col gap-3">
+                      <p className="flex items-start gap-2">
+                        <span className="flex-shrink-0 mt-0.5">{item.icon}</span>
+                        <span>{item.text}</span>
+                      </p>
+                      {idx === 0 && (
+                        <div className="flex items-center gap-2 px-4">
+                          <div className="h-[1px] flex-grow bg-blue-100" />
+                          <span className="text-[10px] font-bold text-blue-400 uppercase tracking-widest">OR</span>
+                          <div className="h-[1px] flex-grow bg-blue-100" />
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div className="space-y-3 text-sm font-medium text-gray-700">
-                <p className="flex items-center gap-2">
-                  <User className="w-4 h-4 text-gray-400" />
-                  Up to {currentGrowth.views} profile views
-                </p>
-                {currentGrowth.outcomes.map((item: any, idx: number) => (
-                  <p key={idx} className="flex items-start gap-2">
-                    <span className="flex-shrink-0 mt-0.5">{item.icon}</span>
-                    <span>{item.text}</span>
-                  </p>
-                ))}
-                <p className="flex items-center gap-2">
-                  <User className="w-4 h-4 text-gray-400" />
-                  2 seats
-                </p>
-                {currentGrowth.note && (
-                  <p className="text-xs text-gray-400 mt-2 font-normal italic">
-                    "{currentGrowth.note}"
-                  </p>
-                )}
-              </div>
+              <button className={`w-full py-3 px-4 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 mb-6 bg-gradient-to-t from-blue-500 to-blue-600 border border-blue-400 text-white`}>
+                Upgrade to Growth →
+              </button>
             </div>
 
-            <button className={`w-full py-4 px-6 rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 mb-8 ${
-              billingCycle === "semiannual" || billingCycle === "yearly"
-                ? "bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-50"
-                : "bg-gradient-to-t from-blue-500 to-blue-600 border border-blue-400 text-white"
-            }`}>
-              {billingCycle === "semiannual" || billingCycle === "yearly"
-                ? "Contact Us →"
-                : "Upgrade to Growth →"}
-            </button>
+            <hr className="border-blue-200 mb-5" />
 
-            <hr className="border-blue-200 mb-8" />
-
-            <ul className="space-y-4 mb-10 flex-grow">
+            <div className="space-y-2">
               {[
-                "**Direct mobile numbers** — call people nobody else has called this week",
-                "**Work + personal emails** — higher reply rate when work inbox is silent",
-                "AI match ranking + insights",
-                "Unlimited exports (CSV + PDF)",
-                "**Bulk email sequences** — send to 100s of candidates in one click",
-                "2 login seats",
-                "Priority support"
+                "AI-ranked shortlist — unlock only the contacts worth calling",
+                "Direct mobile numbers — call people nobody else has called",
+                "Phone unlock includes verified email — free",
+                "Weekly verified data refresh",
+                "Email sequence automation",
               ].map((feature, i) => (
-                <li key={i} className="flex items-start gap-3 group relative">
-                  <span className="mt-0.5 flex-shrink-0 grid place-content-center h-5 w-5 rounded-full bg-blue-100 border border-blue-600">
-                    <CheckCheck className="h-3 w-3 text-blue-600" strokeWidth={3} />
+                <div key={i} className="flex items-start gap-3 pb-2 border-b border-dashed border-blue-200 last:border-0">
+                  <span className="mt-0.5 flex-shrink-0 grid place-content-center h-5 w-5 rounded-full bg-white border border-blue-600">
+                    <Check className="h-3 w-3 text-blue-600" strokeWidth={3} />
                   </span>
-                  <div className="flex flex-col relative w-full">
-                    <span className="text-sm text-gray-700 border-b border-dashed border-gray-300 pb-0.5 w-fit">
-                      {feature.includes('**') ? (
-                        <>
-                          <strong>{feature.split('**')[1]}</strong>
-                          {feature.split('**')[2]}
-                        </>
-                      ) : feature}
-                    </span>
-                  </div>
-                </li>
+                  <span className="text-[13px] text-gray-700 font-medium leading-tight">
+                    {feature}
+                  </span>
+                </div>
               ))}
-            </ul>
+            </div>
+          </motion.div>
+
+          {/* PRO CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="bg-white rounded-[24px] border border-neutral-200 p-6 shadow-sm flex flex-col h-full relative overflow-hidden"
+          >
+            <div className="flex-grow flex flex-col">
+              <div className="mb-6 min-h-[340px] flex flex-col">
+                <h3 className="text-xl font-semibold text-gray-900 uppercase mb-2">
+                  PRO
+                </h3>
+                <p className="text-sm text-gray-600 mb-6 min-h-[40px]">
+                  For agencies running 8–12 mandates. Your full sourcing machine.
+                </p>
+
+                <div className="flex flex-col gap-1 mb-6">
+                  <div className="flex flex-col">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-3xl font-semibold text-gray-900">
+                        ₹<NumberFlow value={currentPro.price} format={{ useGrouping: true }} />
+                      </span>
+                      <span className="text-gray-600 font-medium text-sm">
+                        {currentPro.period}
+                      </span>
+                    </div>
+                    {billingCycle === "yearly" && currentPro.yearlyBilled && (
+                      <p className="text-xs text-blue-600 font-semibold mt-1">
+                        Billed ₹{currentPro.yearlyBilled.toLocaleString('en-IN')}/yr · Save ₹{currentPro.yearlySave.toLocaleString('en-IN')}/yr
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="space-y-3 text-sm font-medium text-gray-700 flex-grow">
+                  <p className="flex items-center gap-2">
+                    <User className="w-4 h-4 text-gray-400" />
+                    Up to {currentPro.views} public profile views
+                  </p>
+                  {currentPro.outcomes.map((item: any, idx: number) => (
+                    <div key={idx} className="flex flex-col gap-3">
+                      <p className="flex items-start gap-2">
+                        <span className="flex-shrink-0 mt-0.5">{item.icon}</span>
+                        <span>{item.text}</span>
+                      </p>
+                      {idx === 0 && (
+                        <div className="flex items-center gap-2 px-4">
+                          <div className="h-[1px] flex-grow bg-neutral-100" />
+                          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">OR</span>
+                          <div className="h-[1px] flex-grow bg-neutral-100" />
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <button className="w-full py-3 px-4 bg-neutral-900 text-white rounded-xl font-bold hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 shadow-lg shadow-neutral-900/20 mb-6">
+                Start with Pro →
+              </button>
+            </div>
+
+            <hr className="border-neutral-100 mb-5" />
+
+            <div className="space-y-2">
+              {[
+                "AI-ranked shortlist — unlock only the contacts worth calling",
+                "Direct mobile numbers — call people nobody else has called",
+                "Phone unlock includes verified email — free",
+                "Weekly verified data refresh",
+                "Email sequence automation",
+                "Priority support",
+              ].map((feature, i) => (
+                <div key={i} className="flex items-start gap-3 pb-2 border-b border-dashed border-neutral-100 last:border-0">
+                  <span className="mt-0.5 flex-shrink-0 grid place-content-center h-5 w-5 rounded-full bg-white border border-blue-400">
+                    <Check className="h-3 w-3 text-blue-500" strokeWidth={3} />
+                  </span>
+                  <span className="text-[13px] text-gray-600 font-medium leading-tight">
+                    {feature}
+                  </span>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
           {/* BUSINESS CARD */}
@@ -468,157 +445,126 @@ export function PricingSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="bg-white rounded-[24px] border border-neutral-200 p-8 shadow-sm flex flex-col h-full relative overflow-hidden"
+            className="bg-white rounded-[24px] border border-neutral-200 p-6 shadow-sm flex flex-col h-full relative overflow-hidden"
           >
-            <div className="mb-8">
-              <h3 className="text-2xl font-semibold text-gray-900 uppercase mb-2">
-                BUSINESS
-              </h3>
-              <p className="text-sm text-gray-600 mb-6 min-h-[40px]">
-                For large enterprise teams needing custom limits and API access.
-              </p>
-              
-              <div className="h-10 mb-6" />
+            <div className="flex-grow flex flex-col">
+              <div className="mb-6 min-h-[340px] flex flex-col">
+                <h3 className="text-xl font-semibold text-gray-900 uppercase mb-2">
+                  BUSINESS
+                </h3>
+                <p className="text-sm text-gray-600 mb-6 min-h-[40px]">
+                  For large teams needing custom limits, API access and dedicated support.
+                </p>
 
-              <div className="flex flex-col gap-1 mb-6">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-semibold text-gray-900">Business</span>
+                <div className="flex flex-col gap-1 mb-6">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-semibold text-gray-900">Business / Custom</span>
+                  </div>
+                </div>
+
+                <div className="space-y-3 text-sm font-medium text-gray-700 flex-grow">
+                  <p className="flex items-center gap-2">
+                    <User className="w-4 h-4 text-gray-400" />
+                    Custom search volume
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-gray-400" />
+                    Custom contact credits
+                  </p>
                 </div>
               </div>
 
-              <div className="space-y-3 text-sm font-medium text-gray-700">
-                <p className="flex items-center gap-2">
-                  <User className="w-4 h-4 text-gray-400" />
-                  Custom search volume
-                </p>
-                <p className="flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-gray-400" />
-                  Custom contact credits
-                </p>
-                <p className="flex items-center gap-2">
-                  <User className="w-4 h-4 text-gray-400" />
-                  Custom seats
-                </p>
-              </div>
+              <button className="w-full py-3 px-4 bg-neutral-900 text-white rounded-xl font-bold hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 shadow-lg shadow-neutral-900/20 mb-6">
+                Contact Sales →
+              </button>
             </div>
 
-            <button className="w-full py-4 px-6 bg-neutral-900 text-white rounded-xl font-bold hover:bg-neutral-800 transition-all flex items-center justify-center gap-2 shadow-lg shadow-neutral-900/20 mb-8">
-              Contact sales →
-            </button>
+            <hr className="border-neutral-100 mb-5" />
 
-            <hr className="border-neutral-100 mb-8" />
-
-            <ul className="space-y-4 mb-8 flex-grow">
+            <div className="space-y-2">
               {[
                 "Custom search volume",
                 "Custom contact credits",
                 "Dedicated account manager",
                 "Custom ATS integrations",
-                "Team collaboration — Custom seats",
+                "Team collaboration tools",
+                "Priority support (email, chat, WhatsApp)",
+                "SLA guarantee",
               ].map((feature, i) => (
-                <li key={i} className="flex items-start gap-3 group relative">
-                  <span className="mt-0.5 flex-shrink-0 grid place-content-center h-5 w-5 rounded-full bg-blue-50 border border-blue-500">
-                    <CheckCheck className="h-3 w-3 text-blue-500" strokeWidth={3} />
+                <div key={i} className="flex items-start gap-3 pb-2 border-b border-dashed border-neutral-100 last:border-0">
+                  <span className="mt-0.5 flex-shrink-0 grid place-content-center h-5 w-5 rounded-full bg-white border border-blue-400">
+                    <Check className="h-3 w-3 text-blue-500" strokeWidth={3} />
                   </span>
-                  <div className="flex flex-col relative w-full">
-                    <span className="text-sm text-gray-700 border-b border-dashed border-gray-300 pb-0.5 w-fit">
-                      {feature}
-                    </span>
-                  </div>
-                </li>
+                  <span className="text-[13px] text-gray-600 font-medium leading-tight">
+                    {feature}
+                  </span>
+                </div>
               ))}
-            </ul>
+            </div>
           </motion.div>
         </div>
 
         {/* CREDIT EXPLAINER */}
         <div className="max-w-5xl mx-auto mb-16">
-          <div className="bg-white border border-neutral-200 rounded-[32px] p-8 md:p-10 shadow-sm overflow-hidden relative">
-            <div className="text-center mb-10">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">How credits work</h3>
-              <p className="text-sm text-gray-500">Simple, predictable consumption model</p>
+          <div className="bg-white border border-neutral-200 rounded-[32px] p-8 md:p-12 shadow-sm overflow-hidden relative">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">How credits work</h3>
+              <p className="text-sm text-gray-500 font-medium">Unlock only the contacts you choose — zero waste.</p>
             </div>
             
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 mb-10">
-              <div className="flex flex-col items-center gap-3">
-                <div className="w-12 h-12 bg-neutral-50 rounded-2xl flex items-center justify-center text-gray-600 border border-neutral-200">
-                  <Phone className="w-5 h-5" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-12 relative">
+              {/* Divider lines for desktop */}
+              <div className="hidden md:block absolute left-1/3 top-1/4 bottom-1/4 w-px bg-neutral-100" />
+              <div className="hidden md:block absolute left-2/3 top-1/4 bottom-1/4 w-px bg-neutral-100" />
+
+              <div className="flex flex-col items-center text-center px-4">
+                <div className="w-14 h-14 bg-neutral-50 rounded-2xl flex items-center justify-center text-gray-600 border border-neutral-100 mb-6">
+                  <Mail className="w-6 h-6" />
                 </div>
-                <div className="text-center">
-                  <p className="text-sm font-bold text-gray-900">Phone only</p>
-                  <p className="text-xs font-bold text-blue-600">1 credit</p>
-                </div>
+                <p className="text-lg font-bold text-gray-900 mb-1">Email only</p>
+                <p className="text-sm font-bold text-blue-600 mb-1">0.1 credit</p>
+                <p className="text-xs text-gray-400 font-medium">10 emails = 1 credit</p>
               </div>
 
-              <div className="hidden md:block w-px h-8 bg-neutral-100" />
-
-              <div className="flex flex-col items-center gap-3">
-                <div className="w-12 h-12 bg-neutral-50 rounded-2xl flex items-center justify-center text-gray-600 border border-neutral-200">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div className="text-center">
-                  <p className="text-sm font-bold text-gray-900">Work email only</p>
-                  <p className="text-xs font-bold text-blue-600">0.25 credit</p>
-                </div>
-              </div>
-
-              <div className="hidden md:block w-px h-8 bg-neutral-100" />
-
-              <div className="flex flex-col items-center gap-3">
-                <div className="w-12 h-12 bg-neutral-50 rounded-2xl flex items-center justify-center text-gray-600 border border-neutral-200">
-                  <Mail className="w-5 h-5 opacity-70" />
-                </div>
-                <div className="text-center">
-                  <p className="text-sm font-bold text-gray-900">Personal email</p>
-                  <p className="text-xs font-bold text-blue-600">0.25 credit</p>
-                </div>
-              </div>
-
-              <div className="hidden md:block w-px h-8 bg-neutral-100" />
-
-              <div className="flex flex-col items-center gap-3">
-                <div className="flex -space-x-2">
-                  <div className="w-10 h-10 bg-neutral-50 rounded-xl flex items-center justify-center text-gray-600 border border-neutral-200 relative z-10">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                  <div className="w-10 h-10 bg-neutral-100 rounded-xl flex items-center justify-center text-gray-600 border border-neutral-100 relative z-0">
-                    <Mail className="w-4 h-4" />
-                  </div>
-                </div>
-                <div className="text-center">
-                  <p className="text-sm font-bold text-gray-900">Both emails</p>
-                  <p className="text-xs font-bold text-blue-600">0.5 credit</p>
-                </div>
-              </div>
-
-              <div className="hidden md:block w-px h-8 bg-neutral-100" />
-
-              <div className="flex flex-col items-center gap-3">
-                <div className="relative">
-                  <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
-                    <Zap className="w-6 h-6 fill-current" />
-                  </div>
-                  <span className="absolute -top-2 -right-2 bg-orange-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full uppercase tracking-tighter">
+              <div className="flex flex-col items-center text-center px-4 relative">
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                  <span className="bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tight flex items-center gap-1 shadow-sm">
                     🔥 Best reply
                   </span>
                 </div>
-                <div className="text-center">
-                  <p className="text-sm font-bold text-gray-900">Phone + both</p>
-                  <p className="text-xs font-bold text-blue-600">1.5 credits</p>
+                <div className="flex items-center justify-center -space-x-3 mb-6">
+                  <div className="w-14 h-14 bg-neutral-50 rounded-2xl flex items-center justify-center text-gray-600 border border-neutral-100 relative z-10 shadow-sm">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  <div className="w-14 h-14 bg-neutral-100 rounded-2xl flex items-center justify-center text-gray-500 border border-neutral-200 relative z-0">
+                    <Mail className="w-5 h-5" />
+                  </div>
                 </div>
+                <p className="text-lg font-bold text-gray-900 mb-1">Phone + email</p>
+                <p className="text-sm font-bold text-blue-600 mb-1">1 credit</p>
+                <p className="text-xs text-gray-400 font-medium">Verified email included free</p>
+              </div>
+
+              <div className="flex flex-col items-center text-center px-4">
+                <div className="w-14 h-14 bg-neutral-50 rounded-2xl flex items-center justify-center text-gray-600 border border-neutral-100 mb-6">
+                  <Clock className="w-6 h-6" />
+                </div>
+                <p className="text-lg font-bold text-gray-900 mb-1">Data freshness</p>
+                <p className="text-sm font-bold text-blue-600 mb-1">Weekly</p>
+                <p className="text-xs text-gray-400 font-medium">Contacts re-verified every 7 days</p>
               </div>
             </div>
 
-            <div className="text-center">
-              <p className="text-sm text-gray-400 font-medium">
-                "Credits unlock only the profiles you choose — zero waste."
+            <div className="text-center pt-8 border-t border-neutral-50">
+              <p className="text-sm text-gray-400 font-medium italic">
+                "Credits are only deducted for verified results. If we can't find the contact, you pay nothing."
               </p>
             </div>
           </div>
         </div>
 
         {/* Value Strip */}
-        <motion.div 
+        {/* <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -634,9 +580,9 @@ export function PricingSection() {
             </Link>
           </div>
           <p className="text-gray-600 text-sm max-w-2xl mx-auto font-medium">
-            One extra placement on a ₹10L role = ₹83,000 fee. Nexire Growth costs ₹11,999. Keep 100% of your fee.
+            One extra placement on a ₹10L role = ₹83,000 fee. Nexire costs as low as ₹3,300. Keep 100% of your fee.
           </p>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );
